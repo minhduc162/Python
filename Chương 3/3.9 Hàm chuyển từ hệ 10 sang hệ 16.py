@@ -1,43 +1,30 @@
-def swap(c):
-    if '0' <= c <= '9':
-        return ord(c) - 48
-    if 'A' <= c <= 'F':
-        return {
-            'A': 10,
-            'B': 11,
-            'C': 12,
-            'D': 13,
-            'E': 14,
-            'F': 15
-        }[c]
-    if 'a' <= c <= 'f':
-        return {
-            'a': 10,
-            'b': 11,
-            'c': 12,
-            'd': 13,
-            'e': 14,
-            'f': 15
-        }[c]
-    return -1
-
-def check(s):
-    for i in range(len(s) - 1, 1, -1):
-        if swap(s[i]) == -1:
-            return False
-    return True
+def hex_to_dec(hex_str) :
+    if not hex_str.startswith("0x") or any(c not in "0123456789abcdefABCDEF" for c in hex_str[2:]) :
+        return "Giá trị không phải là số thập lụclục phân"
+    try:
+        return int(hex_str, 16)
+    except:
+        return"Giá tri không hợp lệ"
+a = input("Nhập chuỗi: ")
+result = hex_to_dec(a)
+if result == "Giá trị không phải là số thập phân":
+    print(result)
+else :
+    print("{} --> {}".format(a,result))
 
 
-s = input("Nhập chuỗi: ")
-if s[:2] == "0x":
-    if not check(s):
-        print("Invalid input")
-    else:
-        n = 0
-        x = 1
-        for i in range(len(s) - 1, 1, -1):
-            n += swap(s[i]) * x
-            x *= 16
-        print(n)
-else:
-    print("Invalid input")
+
+def dec_to_hex(n) :
+    if n < 0:
+        return "Giá trị không hợp lệ"
+    char = "0123456789ABCDEFabcdef"
+    hex_str = ""
+    while n > 0 :
+        hex_str = char[n % 16] + hex_to_dec
+        n //= 16
+    return hex_str if hex_str else "0"
+try :
+    n = int(input("Nhập số nguyên: "))
+    print(dec_to_hex(n))
+except :
+    print("Giá trị không hợp lệ")
