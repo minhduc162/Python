@@ -1,16 +1,16 @@
-def bin(n):
-    binary = []
-    while n != 0:
-        binary.append(n % 2)
-        n //= 2
-    for bit in reversed(binary):
-        print(bit, end=" ")
+def bin(n) :
+    if n == 0 :
+        return '0'
+    binary = ""
+    while n > 0 :
+        binary = str(n%2) + binary
+        n = n // 2
+    return binary
 
-def kq(a, b):
-    for i in range(a, b + 1):
-        print(f"{i}: ", end="")
-        bin(i)
-        print() 
+def kq(a, b) :
+    for i in range( a,b) :
+        print(" {} = {} ".format(i, bin(i)))
+        
 
 a, b = map(int, input("Nhập hai số a và b: ").split())
 if a < b:
